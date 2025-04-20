@@ -48,7 +48,6 @@ public class AuthController {
 
         Authentication authentication = new UsernamePasswordAuthenticationToken(user.getEmail(),user.getPassword());
         SecurityContextHolder.getContext().setAuthentication(authentication);
-
         String jwt = JwtProvider.generateToken(authentication);
 
         AuthResponse res = new AuthResponse();
@@ -61,7 +60,7 @@ public class AuthController {
 
     @PostMapping("/signin")
     public ResponseEntity<AuthResponse> signin(@RequestBody LoginRequest loginRequest){
-        String username = loginRequest.getEmail();
+        String username = loginRequest  .getEmail();
         String password = loginRequest.getPassword();
 
         Authentication authentication = authenticate(username,password);
